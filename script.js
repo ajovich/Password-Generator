@@ -53,10 +53,7 @@ var numbers = "0123456789";
 var symbols = " !\"#$%\&\'()*+,-./:;<=>?@[]^_`{|}~ ";
 
 // Empty array to store user input.
-let securePassword = [];
-
-// Empty array to store secure generated password at the end. 
-let newPassword = [];
+var securePassword = [];
 
 // Begins with function writePassword()
 // Prompts user to input the desired length for password
@@ -65,7 +62,7 @@ function writePassword() {
  
   var passwordLength = prompt("Please enter the desired password length");
   if (passwordLength >= 8 && passwordLength <= 128) {
-    console.log(passwordLength)
+    securePassword.push();
   } else {
     alert("Password must be between 8 - 128 characters. Please input again.");
     writePassword();
@@ -78,7 +75,7 @@ function writePassword() {
   var symbols = confirm("Would you like to use special characters?");
 
 // if - else if - else statments for every possibility. 
-// Is there any easier way to do this?? 64 possible combinations?
+// Is there any easier way to do this for all possible combinations?? 64 possible combinations? ternary operator? 
 if (uppercase === true && lowercase === true && numbers === true && symbols === true) {
   securePassword.push();
 } else if (uppercase === false && lowercase === true && numbers === true && symbols === true) {
@@ -99,19 +96,18 @@ if (uppercase === true && lowercase === true && numbers === true && symbols === 
   securePassword.push();
 } else if (uppercase === true && lowercase === true && numbers === false && symbols === true) {
   securePassword.push();
-} else {
-  alert("Must select one of the following: uppercase, lowercase, numbers, or symbols. Please input again.");
+} else { //(uppercase === false && lowercase === false && numbers === false && symbols === false);
+  alert("Must select at least one of the following: uppercase, lowercase, numbers, or symbols. Please input again.");
   writePassword();
 }
 
-// Created for loop. 
+// Created for loop to create randomized password based on user preferences. 
 // Math.random does not provide cryptographically secure random numbers. Is there a better way to do this for added security? -- window.crypto.getRandomValues()
 for (var i = 0; i < passwordLength; i++) {
-  var randomNum = Math.floor(Math.random() * securePassword.length)
-    password += securePassword[randomNum];
+  var passwordText = Math.floor(Math.random() * passwordLength.length)
+    passwordText += securePassword[passwordText];
 }
 
 // Returns generated password into textbox.
-return newPassword;
-
+return generatePassword;
 }
