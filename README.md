@@ -15,6 +15,8 @@
 
 ## Deployment
 
-* URL of deployed application. 
+## URL of deployed application. 
+https://ajovich.github.io/homework03/
 
-* URL of GitHub repository.
+## URL of GitHub repository.
+https://github.com/ajovich/homework03
