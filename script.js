@@ -1,34 +1,3 @@
-/* Pseudo Code
-Declare variables: passwordLength, uppercase, lowercase, numbers, symbols
-
-Declare empty array to store user input
-
-Prompt user to input desired length of password
-  if passwordlength >= 8 || passwordLength <= 128 
-    store within array
-  else alert "Please input again." 
-    writePassword(); function recall
-  END IF
-
-Prompt user to select cancel || confirm if they desire above criteria. Cancel = false/no, Confirm = true/yes. If none confirmed, alert window "You must confirm one"
-Need to provide every option w/ if - else if - else statement
-  if uppercase === true && lowercase === true && numbers === true && symbols === true 
-    store within array
-    else if ...
-    store within array
-    else if ... 
-    store within array
-    ...
-    else alert "Must select one"
-  END IF 
-
-Random math selection
-  for loop with Math.Random
-
-Return password
-*/
-
-
 // Assignment Code.
 var generateBtn = document.querySelector("#generate");
 
@@ -38,7 +7,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button.
@@ -53,6 +21,9 @@ var numbers = "0123456789";
 var symbols = " !\"#$%\&\'()*+,-./:;<=>?@[]^_`{|}~ ";
 
 // Empty array to store user input.
+var passwordChoices = [];
+
+// Empty array to store newly generated secure password
 var securePassword = [];
 
 // Begins with function writePassword()
@@ -62,52 +33,53 @@ function writePassword() {
  
   var passwordLength = prompt("Please enter the desired password length");
   if (passwordLength >= 8 && passwordLength <= 128) {
-    securePassword.push();
   } else {
     alert("Password must be between 8 - 128 characters. Please input again.");
     writePassword();
-  }
+  };
 
   // If user clicks "confirm" on alert window for any of the below criteria === true.
-  var uppercase = confirm("Would you like to use uppercase letters?");
-  var lowercase = confirm("Would you like to use lowercase letters?");
-  var numbers = confirm("Would you like to use numbers?");
-  var symbols = confirm("Would you like to use special characters?");
+  var confirmUppercase = confirm("Would you like to use uppercase letters?");
+  var confirmLowercase = confirm("Would you like to use lowercase letters?");
+  var confirmNumbers = confirm("Would you like to use numbers?");
+  var confirmSymbols = confirm("Would you like to use special characters?");
 
-// if - else if - else statments for every possibility. 
-// Is there any easier way to do this for all possible combinations?? 64 possible combinations? ternary operator? 
-if (uppercase === true && lowercase === true && numbers === true && symbols === true) {
-  securePassword.push();
-} else if (uppercase === false && lowercase === true && numbers === true && symbols === true) {
-  securePassword.push();
-} else if (uppercase === false && lowercase === false && numbers === true && symbols === false) {
-  securePassword.push();
-} else if (uppercase === false && lowercase === false && numbers === true && symbols === false) {
-  securePassword.push();
-} else if (uppercase === true && lowercase === false && numbers === true && symbols === true) {
-  securePassword.push();
-} else if (uppercase === true && lowercase === false && numbers === true && symbols === false) {
-  securePassword.push();
-} else if (uppercase === true && lowercase === false && numbers === false && symbols === false) {
-  securePassword.push();
-} else if (uppercase === true && lowercase === true && numbers === false && symbols === false) {
-  securePassword.push();
-} else if (uppercase === true && lowercase === true && numbers === false && symbols === true) {
-  securePassword.push();
-} else if (uppercase === true && lowercase === true && numbers === false && symbols === true) {
-  securePassword.push();
-} else { //(uppercase === false && lowercase === false && numbers === false && symbols === false);
+// If user inputs "confirm", then adds to array passwordChoices.
+// If user does not "confirm" any, then an alert pops up with criteria that needs to be met prior to generating secure password. 
+if (confirmUppercase === true && confirmLowercase === true && confirmNumbers === true && confirmSymbols === true) {
+  paswordChoices = uppercase.concat(lowercase, numbers, symbols);
+} else if (confirmUppercase === false && confirmLowercase === true && confirmNumbers === true && confirmSymbols === true) {
+  paswordChoices = lowercase.concat(numbers, symbols);
+} else if (confirmUppercase === false && confirmLowercase === false && confirmNumbers === true && confirmSymbols === false) {
+  paswordChoices = numbers;
+} else if (confirmUppercase === false && confirmLowercase === false && confirmNumbers === true && confirmSymbols === false) {
+  paswordChoices = numbers;
+} else if (confirmUppercase === true && confirmLowercase === false && confirmNumbers === true && confirmSymbols === true) {
+  paswordChoices = uppercase.concat(numbers, symbols);
+} else if (confirmUppercase === true && confirmLowercase === false && confirmNumbers === true && confirmSymbols === false) {
+  paswordChoices = uppercase.concat(numbers);
+} else if (confirmUppercase === true && confirmLowercase === false && confirmNumbers === false && confirmSymbols === false) {
+  paswordChoices = uppercase;
+} else if (confirmUppercase === true && confirmLowercase === true && confirmNumbers === false && confirmSymbols === false) {
+  paswordChoices = uppercase.concat(lowercase);
+} else if (confirmUppercase === true && confirmLowercase === true && confirmNumbers === false && confirmSymbols === true) {
+  paswordChoices = uppercase.concat(lowercase, symbols);
+} else if (confirmUppercase === true && confirmLowercase === true && confirmNumbers === false && confirmSymbols === true) {
+  paswordChoices = uppercase.concat(lowercase, symbols);
+} else { (!confirmUppercase && !confirmLowercase && !confirmNumbers && !confirmSymbols);
   alert("Must select at least one of the following: uppercase, lowercase, numbers, or symbols. Please input again.");
   writePassword();
 }
 
+console.log(passwordChoices);
+
 // Created for loop to create randomized password based on user preferences. 
 // Math.random does not provide cryptographically secure random numbers. Is there a better way to do this for added security? -- window.crypto.getRandomValues()
 for (var i = 0; i < passwordLength; i++) {
-  var passwordText = Math.floor(Math.random() * passwordLength.length)
-    passwordText += securePassword[passwordText];
+  var randomNumber = Math.floor(Math.random() * passwordChoices)
+    securePassword += passwordChoices[randomNumber];
 }
 
-// Returns generated password into textbox.
-return generatePassword;
+// Returns newly generated secure password
+return securePassword;
 }

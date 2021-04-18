@@ -13,6 +13,13 @@
 
 * If any of the criteria is not met, an alert pops up e.g. "Character length must be greater than 8."
 
+
+## Images
+
+![alt text here](images/errorAlertChoices.png)
+
+![alt text here](images/errorAlertLength.png)
+
 ## Deployment
 
 ## URL of deployed application. 
