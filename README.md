@@ -16,9 +16,9 @@
 
 ## Images
 
-![alt text here](images/errorAlertChoices.png)
+![Alert Box User Must Select One of the Following](images/errorAlertChoices.png)
 
-![alt text here](images/errorAlertLength.png)
+![Alert Box Password Length Not Met](images/errorAlertLength.png)
 
 ## Deployment
 
